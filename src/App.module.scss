@@ -1,0 +1,10 @@
+.appContainer {
+  width: 100%;
+  min-height: 100vh;
+  background: transparent;
+  transition: background 0.5s;
+
+  &.dark {
+    background: #222;
+  }
+}

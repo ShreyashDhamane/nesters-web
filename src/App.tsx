@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "pages/Home/Home";
+import styles from "./App.module.scss";
+import RootLayout from "layouts/RootLayout/RootLayout";
+import { useAppSelector } from "store/hooks";
+import { selectTheme } from "store/features/themeSlice";
+import { useEffect } from "react";
 
 function App() {
+  const theme = useAppSelector(selectTheme);
+
+  useEffect(() => {
+    localStorage.setItem("currentTheme", theme);
+  }, [theme]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className={`${styles.appContainer} ${theme === "dark" && styles.dark}`}
+    >
+      <RootLayout>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+      </RootLayout>
     </div>
   );
 }

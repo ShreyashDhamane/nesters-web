@@ -1,0 +1,121 @@
+@import "assets/css/variable";
+
+.navbarContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  padding: 15px 10%;
+  transition: 0.5s;
+  height: $navbar-height;
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  z-index: $z-navbar;
+  .navbarLogo {
+    cursor: pointer;
+    font-size: 3rem;
+  }
+
+  ul {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+    li {
+      display: inline-block;
+      padding: 20px 20px;
+      font-size: $fs-navbar-desktop;
+      font-weight: 600;
+      color: $neutral-400;
+      cursor: pointer;
+
+      &:hover {
+        color: $neutral-500;
+      }
+    }
+  }
+
+  .navbarToggleIcon {
+    width: 30px;
+    cursor: pointer;
+  }
+
+  &.dark {
+    background: #000;
+    color: #fff;
+
+    ul {
+      li {
+        color: $neutral-200;
+      }
+    }
+  }
+  .sidebarDiv {
+    .sidebar {
+      position: fixed;
+      top: calc($navbar-height - 5px);
+      right: 10%;
+      width: 200px;
+      z-index: $z-sidebar;
+      background-color: $neutral-000;
+      box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      border: 1px solid $neutral-000;
+      border-radius: 5px;
+
+      li {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        width: 100%;
+        padding: 7.5px 15px;
+        color: rgba(128, 128, 128, 0.947);
+        font-size: smaller;
+        font-weight: 600;
+
+        &:hover {
+          background-color: rgba(211, 211, 211, 0.37);
+        }
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc($navbar-height - 5px);
+      right: 10%;
+      transform: translateY(-90%);
+      //   rotate: ;
+      z-index: $z-navbar;
+      border-width: 13px;
+      border-style: solid;
+      border-color: transparent transparent $neutral-000 transparent;
+    }
+  }
+}
+@media (min-width: $break-point-desktop-sm) {
+  .navbarContainer {
+    .sidebarDiv {
+      .sidebar {
+        display: none;
+      }
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
+@media (max-width: $break-point-desktop-sm) {
+  .navbarContainer {
+    ul {
+      display: none;
+    }
+    .navbarToggleIcon {
+      display: none;
+    }
+  }
+}

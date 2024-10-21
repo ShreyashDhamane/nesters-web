@@ -1,0 +1,13 @@
+@import "assets/css/variable";
+
+.hamburgerIcon {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (min-width: $break-point-desktop-sm) {
+  .hamburgerIcon {
+    display: none;
+  }
+}
